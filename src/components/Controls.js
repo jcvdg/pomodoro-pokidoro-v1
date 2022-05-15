@@ -8,13 +8,14 @@ const breakOptions = [5,10,15,20];
 const defaultFocusOption = 1;
 const defaultBreakOption = 0;
 
-const Controls = () => {
+const Controls = (props) => {
     const [timer, setTimer] = useState();
     const [focusSessionTime, setFocusSessionTime] = useState(2);
-    const [breakSessionTime, setBreakSessionTime] = useState(5*60);
+    const [breakSessionTime, setBreakSessionTime] = useState(5);
     const [runTimer, setRunTimer] = useState(false);
     const [focus, setFocus] = useState(true);
-    const [runningTime, setRunningTime] = useState(focusSessionTime)
+    const [runningTime, setRunningTime] = useState(focusSessionTime);
+
 
 /*
 Main Display: Focus Time / Break Time
@@ -26,9 +27,14 @@ Break Time Buttons: active & updates main display IF break session time=true;
 
 
     const startTimer = () => {
-        focus ? setRunningTime(focusSessionTime) : setRunningTime(breakSessionTime)
+        if (focus) {
+            setRunningTime(focusSessionTime);
+            props.setTimerState(1);
+        } else {
+            setRunningTime(breakSessionTime);
+        }
         setRunTimer(true)
-        console.log('starttimer')
+        // console.log('starttimer')
     };
 
     useEffect( () => {
@@ -53,7 +59,12 @@ Break Time Buttons: active & updates main display IF break session time=true;
             console.log(`if greater, `, runningTime)
         }
             console.log(`run focus session time - decrement`, runningTime)
-        if(runningTime == 0) {
+        if(runningTime === 0) {
+            if(focus) {
+                props.setTimerState(2);
+            } else {
+                props.setTimerState(3);
+            }
             setRunTimer(false);
             setFocus(!focus);
             clearInterval(timer);
@@ -80,7 +91,7 @@ console.log(runningTime, focusSessionTime, breakSessionTime);
     <div className="Controls">
         <div>
         
-            <div>{focus? formatTime(focusSessionTime) : formatTime(breakSessionTime)}</div>
+            <div>{focus ? (formatTime(focusSessionTime)) : formatTime(breakSessionTime)}</div>
             <div>{formatTime(runningTime)}</div>
 
             <h4>Focus Time</h4>

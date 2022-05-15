@@ -5,6 +5,8 @@ import ActivePokemon from './components/ActivePokemon';
 
 const App = () => {
 
+    const [timerState, setTimerState] = useState(0);
+
 /*
 Main Display: Focus Time / Break Time
 
@@ -15,14 +17,13 @@ Break Time Buttons: active & updates main display IF break session time=true;
 
 
 /////
-
-
+console.log("BAE SO CUTE" , timerState)
     return (
         <div className="App">
             <h1>Pokidoro Timer</h1>
 
-            <ActivePokemon />
-            <Controls />
+            <ActivePokemon timerState = {timerState}/>
+            <Controls timerState = {timerState} setTimerState = {setTimerState}/>
             {/* <CurrentProgress /> */}
         </div>
     )

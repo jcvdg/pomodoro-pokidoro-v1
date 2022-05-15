@@ -1,4 +1,3 @@
-// import './Buttons.css';
 import React, { useState } from 'react';
 
 const Buttons = ({ options, selected, onSelectedChange }) => {
@@ -21,9 +20,9 @@ const Buttons = ({ options, selected, onSelectedChange }) => {
     
 
     return (
-        <>
+        <div>
             {renderOptions}
-        </>
+        </div>
     )
 }
 
