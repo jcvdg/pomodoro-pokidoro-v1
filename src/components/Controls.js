@@ -5,6 +5,8 @@ import React, { useState,useEffect } from 'react';
 
 const focusOptions = [15,25,35,45];
 const breakOptions = [5,10,15,20];
+const defaultFocusOption = 1;
+const defaultBreakOption = 0;
 
 const Controls = () => {
     const [timer, setTimer] = useState();
@@ -13,8 +15,6 @@ const Controls = () => {
     const [runTimer, setRunTimer] = useState(false);
     const [focus, setFocus] = useState(true);
     const [runningTime, setRunningTime] = useState(focusSessionTime)
-    const [selectedFocusOption, setSelectedFocusOption] = useState(1);
-    const [selectedBreakOption, setSelectedBreakOption] = useState(0);
 
 /*
 Main Display: Focus Time / Break Time
@@ -25,26 +25,11 @@ Break Time Buttons: active & updates main display IF break session time=true;
 */
 
 
-/////
-
     const startTimer = () => {
         focus ? setRunningTime(focusSessionTime) : setRunningTime(breakSessionTime)
         setRunTimer(true)
         console.log('starttimer')
     };
-
-    const updateTime = () => {
-        if(runningTime > 0) {
-            setRunningTime(runningTime => runningTime - 1);
-            console.log(`if greater, `, runningTime)
-        }
-            console.log(`run focus session time - decrement`, runningTime)
-        if(runningTime == 0) {
-            setRunTimer(false);
-            setFocus(!focus);
-            clearInterval(timer);
-        }
-    }
 
     useEffect( () => {
         let interval=0;
@@ -62,6 +47,19 @@ Break Time Buttons: active & updates main display IF break session time=true;
 
     }, [runTimer, runningTime])
 
+    const updateTime = () => {
+        if(runningTime > 0) {
+            setRunningTime(runningTime => runningTime - 1);
+            console.log(`if greater, `, runningTime)
+        }
+            console.log(`run focus session time - decrement`, runningTime)
+        if(runningTime == 0) {
+            setRunTimer(false);
+            setFocus(!focus);
+            clearInterval(timer);
+        }
+    }
+
     const pauseTimer = () => {
         clearInterval(timer);
         setRunTimer(!runTimer)
@@ -75,19 +73,11 @@ Break Time Buttons: active & updates main display IF break session time=true;
         return (m < 10? '0':'')+ m + ':' + (s < 10? '0':'' )+ s
     }
 
-    // const selectTime = (e) => {
-    //     setFocusSessionTime(e.target.value)
-    //     e.target.className = 'active';
-    //     console.log(e.target, e.target.className, e.target.value)
-    // }
-
 
 console.log(runningTime, focusSessionTime, breakSessionTime);
 
   return (
-    <div className="App">
-      <h1>Pomodoro Timer</h1>
-
+    <div className="Controls">
         <div>
         
             <div>{focus? formatTime(focusSessionTime) : formatTime(breakSessionTime)}</div>
@@ -96,13 +86,13 @@ console.log(runningTime, focusSessionTime, breakSessionTime);
             <h4>Focus Time</h4>
             <Buttons 
                 options={focusOptions} 
-                selected={selectedFocusOption} 
+                selected={defaultFocusOption} 
                 onSelectedChange={setFocusSessionTime}
             />
             <h4>Break Time</h4>
             <Buttons 
                 options={breakOptions} 
-                selected={selectedBreakOption} 
+                selected={defaultBreakOption} 
                 onSelectedChange={setBreakSessionTime}
             />
 
