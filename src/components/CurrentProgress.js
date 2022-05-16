@@ -1,10 +1,13 @@
 import React from 'react';
 
-const CurrentProgress = () => {
+const CurrentProgress = ({pokemons}) => {
 
 
     return (
-        <h2>CurrentProgress</h2>
+        <div>
+            <h2>CurrentProgress</h2>
+            <div>{pokemons? pokemons: "start catching them!"}</div>
+        </div>
     )
 }
 

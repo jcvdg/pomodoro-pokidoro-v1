@@ -1,0 +1,24 @@
+#FEB37F
+
+body {
+    /* background: linear-gradient(227.79deg, rgba(254, 179, 127,1) 37.04%, rgba(255, 213, 106, 0.74) 71.91%); */
+    background: linear-gradient(rgba(254, 179, 127,1) rgba(255, 213, 106, 0.74));
+}
+
+.App {
+    display: flex;
+    justify-content: center;
+    border: 2px solid pink;
+}
+
+.container {
+    padding: 3rem;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.content {
+    
+}

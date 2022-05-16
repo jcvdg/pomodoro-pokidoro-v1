@@ -1,39 +1,58 @@
 import React, {useEffect, useState} from 'react';
-import pokeapi from '../apis/pokeapi';
 import axios from 'axios';
-// import './ActivePokemon.css';
+import pokeball from '../media/pokeball.png';
+import './ActivePokemon.css';
 
-const ActivePokemon = () => {
+
+// 'DEFAULT', 'FOCUS_SESSION_START', 'FOCUS_SESSION_COMPLETE', 'BREAK_SESSION_START', 'BREAK_SESSION_COMPLETE'
+
+const ActivePokemon = ({timerState, count, setPokemons}) => {
     const [pokemon, setPokemon] = useState('')
     const [pokemonLink, setPokemonLink] = useState('')
 
     const pokemonId = Math.round(Math.random()*151);
 
-    const getPokemon = async () => {
-        try {
-            const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`);
-            console.log(response)
-            setPokemon(response.data);
-            setPokemonLink(pokemon['sprites']['other']['official-artwork']['front_default']);
-            console.log(pokemonLink)
-        } catch (err) {
-            console.log(err)
-        }
+    const getPokemon = () => {
+        // Request through axios
+        axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
+            .then( pokemon => { // await async response setPokemon
+                setPokemon(pokemon.data)
+                setPokemonLink(pokemon.data['sprites']['other']['official-artwork']['front_default'])
+            })
+            .catch(err => console.log(err));
+
     }
     console.log(pokemonId, pokemon)
-    // console.log(pokemon['sprites']['other']['official-artwork']['front_default'])
-    // getPokemon();
-    // let x = getPokemon();
+
     useEffect( () => {
-        getPokemon();
+        if(count > 0) getPokemon();
         console.log(pokemon)
-    },[])
+    },[count])
+
+    const DisplayPokemon = () => {
+        if(timerState === 'FOCUS_SESSION_START') {
+            return (
+                // <div>????</div>
+                <div><img src={pokeball}/></div>
+            )
+        }else if(timerState === 'FOCUS_SESSION_COMPLETE' || timerState === 'BREAK_SESSION_START' || timerState === 'BREAK_SESSION_COMPLETE') {
+            if( timerState === 'FOCUS_SESSION_COMPLETE' ) {
+                // setPokemons({
+                //     name:pokemon.name,
+                //     id:pokemon.id,
+                //     image:pokemonLink
+                // })
+            }
+            return <div><img src={pokemonLink} /></div>
+        }else {
+            return <div><img src={pokeball}/></div>
+        }
+    }
+
 
     return (
-        <div>
-            <h2>Active Pokemon</h2>
-            <div>{pokemon.name}</div>
-            <img src={pokemonLink} />
+        <div class="ActivePokemon">
+            <DisplayPokemon />
         </div>
     )
 }
