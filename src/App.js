@@ -24,21 +24,22 @@ console.log('setTimerState: ', timerState)
         <div className="App">
             <div className="container">
                 <h1>Pokidoro Timer</h1>
-                
-                <ActivePokemon 
-                    timerState={timerState}
-                    count={count}
-                    pokemons={setPokemons}
-                />
-                {/* <DisplayTime /> */}
-                <Controls 
-                    setTimerState={setTimerState}    
-                    count={count}
-                    setCount={setCount}
-                />
-                {/* <CurrentProgress 
-                    pokemons={pokemons}
-                /> */}
+                <div className="content">
+                    <ActivePokemon 
+                        timerState={timerState}
+                        count={count}
+                        pokemons={setPokemons}
+                    />
+                    {/* <DisplayTime /> */}
+                    <Controls 
+                        setTimerState={setTimerState}    
+                        count={count}
+                        setCount={setCount}
+                    />
+                    {/* <CurrentProgress 
+                        pokemons={pokemons}
+                    /> */}
+                </div>
             </div>
         </div>
     )

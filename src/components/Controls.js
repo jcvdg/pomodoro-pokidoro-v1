@@ -4,26 +4,21 @@ import React, { useState,useEffect } from 'react';
 import TimeDisplay from './TimeDisplay';
 
 
-const focusOptions = [4, 15,25,35,45];
-const breakOptions = [3, 5,10,15,20];
+const focusOptions = [15,25,35,45];
+const breakOptions = [5,10,15,20];
 const defaultFocusOption = 1;
 const defaultBreakOption = 0;
 
 function Controls({ setTimerState, count, setCount }) {
     const [timer, setTimer] = useState();
-    const [focusSessionTime, setFocusSessionTime] = useState(2);
-    const [breakSessionTime, setBreakSessionTime] = useState(5 * 60);
+    const [focusSessionTime, setFocusSessionTime] = useState(focusOptions[1]*60);
+    const [breakSessionTime, setBreakSessionTime] = useState(breakOptions[0]*60);
+    // const [focusSessionTime, setFocusSessionTime] = useState(5);
+    // const [breakSessionTime, setBreakSessionTime] = useState(2);
     const [runTimer, setRunTimer] = useState(false);
     const [focus, setFocus] = useState(true);
     const [runningTime, setRunningTime] = useState(focusSessionTime);
 
-    /*
-    Main Display: Focus Time / Break Time
-    
-    Focus Time Buttons: active & updates main display IF focus session time=true;
-    Break Time Buttons: active & updates main display IF break session time=true;
-    
-    */
     // 'DEFAULT', 'FOCUS_SESSION_START', 'FOCUS_SESSION_COMPLETE', 'BREAK_SESSION_START', 'BREAK_SESSION_COMPLETE'
     const startTimer = () => {
         if (focus) {
@@ -34,7 +29,6 @@ function Controls({ setTimerState, count, setCount }) {
             setRunningTime(breakSessionTime);
             setTimerState('BREAK_SESSION_START');
         }
-        // focus ? setRunningTime(focusSessionTime) : setRunningTime(breakSessionTime)
         setRunTimer(true);
         console.log('starttimer');
     };
@@ -64,7 +58,7 @@ function Controls({ setTimerState, count, setCount }) {
         if (runningTime === 0) {
             if(focus)  {
                 setTimerState('FOCUS_SESSION_COMPLETE');
-                console.log('..................................', count, '.......')
+                console.log('..................................', count, '..................................')
             }else {
                 setTimerState('BREAK_SESSION_COMPLETE');
 
@@ -99,23 +93,35 @@ function Controls({ setTimerState, count, setCount }) {
                 <div>{formatTime(runningTime)}</div> */}
                 <TimeDisplay timeInSeconds={runTimer ? runningTime : focus ? focusSessionTime : breakSessionTime}/>
 
-                <h4>Focus Time</h4>
-                <Buttons
-                    options={focusOptions}
-                    selected={defaultFocusOption}
-                    onSelectedChange={setFocusSessionTime} />
-                <h4>Break Time</h4>
-                <Buttons
-                    options={breakOptions}
-                    selected={defaultBreakOption}
-                    onSelectedChange={setBreakSessionTime} />
+                <div className="buttons">
+                    <div className="sessionType">
+                        <p>Focus Time</p>
+                        <div className="timeSelector">
+                            <Buttons
+                                options={focusOptions}
+                                selected={defaultFocusOption}
+                                onSelectedChange={setFocusSessionTime} 
+                            />
+                        </div>
+                    </div>
+                    <div className="sessionType">
+                        <p>Break Time</p>
+                        <div className="timeSelector">
+                            <Buttons
+                                options={breakOptions}
+                                selected={defaultBreakOption}
+                                onSelectedChange={setBreakSessionTime} 
+                            />
+                        </div>
+                    </div>
+                    <div className='btn-timer'>
+                        <button className='btn-control' onClick={startTimer}>Start</button>
+                        <button className='btn-control' onClick={pauseTimer}>Pause</button>
+                    </div>
+                </div>
 
             </div>
 
-            <div>
-                <button onClick={startTimer}>Start</button>
-                <button onClick={pauseTimer}>Pause</button>
-            </div>
         </div>
 
     );

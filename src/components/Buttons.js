@@ -4,10 +4,10 @@ import React, { useState } from 'react';
 const Buttons = ({ options, selected, onSelectedChange }) => {
     const [clickedId, setClickedId] = useState(options[selected]);
     
-    const renderOptions = options.map( (option,i) => {
+    const renderOptions = options.map( (option) => {
             return (
                 <button 
-                    key={i}
+                    key={option}
                     className={ `${option===clickedId ? "active": ""}` }
                     onClick={() => {
                         setClickedId(option)
