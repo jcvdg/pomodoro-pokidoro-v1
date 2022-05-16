@@ -11,7 +11,7 @@ const Buttons = ({ options, selected, onSelectedChange }) => {
                     className={ `${option===clickedId ? "active": ""}` }
                     onClick={() => {
                         setClickedId(option)
-                        onSelectedChange(option)
+                        onSelectedChange(option*60)
                     }}
                 >
                     {option}

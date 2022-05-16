@@ -75,22 +75,12 @@ function Controls({ setTimerState, count, setCount }) {
         console.log('pause completeTimer: ', runTimer);
     };
 
-    // const formatTime = (seconds) => {
-    //     const s = seconds % 60;
-    //     const m = Math.floor(seconds / 60);
-    //     console.log('time: ', m, s, seconds);
-    //     return (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
-    // };
-
-
     console.log(runningTime, focusSessionTime, breakSessionTime);
 
     return (
         <div className="Controls">
             <div>
 
-                {/* <div>{focus ? formatTime(focusSessionTime) : formatTime(breakSessionTime)}</div>
-                <div>{formatTime(runningTime)}</div> */}
                 <TimeDisplay timeInSeconds={runTimer ? runningTime : focus ? focusSessionTime : breakSessionTime}/>
 
                 <div className="buttons">
