@@ -17,6 +17,7 @@ function Controls({ setTimerState, count, setCount }) {
     // const [breakSessionTime, setBreakSessionTime] = useState(2);
     const [runTimer, setRunTimer] = useState(false);
     const [focus, setFocus] = useState(true);
+    const [pause, setPause] = useState(false);
     const [runningTime, setRunningTime] = useState(focusSessionTime);
 
     // 'DEFAULT', 'FOCUS_SESSION_START', 'FOCUS_SESSION_COMPLETE', 'BREAK_SESSION_START', 'BREAK_SESSION_COMPLETE'
@@ -30,6 +31,7 @@ function Controls({ setTimerState, count, setCount }) {
             setTimerState('BREAK_SESSION_START');
         }
         setRunTimer(true);
+        setPause(false);
         console.log('starttimer');
     };
 
@@ -72,6 +74,7 @@ function Controls({ setTimerState, count, setCount }) {
     const pauseTimer = () => {
         clearInterval(timer);
         setRunTimer(!runTimer);
+        setPause(!pause);
         console.log('pause completeTimer: ', runTimer);
     };
 
@@ -81,7 +84,8 @@ function Controls({ setTimerState, count, setCount }) {
         <div className="Controls">
             <div>
 
-                <TimeDisplay timeInSeconds={runTimer ? runningTime : focus ? focusSessionTime : breakSessionTime}/>
+                {/* <TimeDisplay timeInSeconds={runTimer ? runningTime : focus ? focusSessionTime : breakSessionTime}/> */}
+                <TimeDisplay timeInSeconds={ (runTimer || pause) ? runningTime : focus ? focusSessionTime : breakSessionTime}/>
 
                 <div className="buttons">
                     <div className="sessionType">
