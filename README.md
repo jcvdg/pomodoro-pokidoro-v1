@@ -1,3 +1,27 @@
+# Pokidoro Timer
+
+A pomodoro timer gamified where you can collect Pokemons after each session is complete. Built with React and PokeAPI.
+
+## Features
+
+- Pomodoro timer
+- Select preset times for focus and break sessions
+- Fullscreen mode
+- Cross platform
+
+
+## Optimizations
+
+- Display previously collected pokemon
+- Improve UX
+- Add tasks and link to pomodoro session
+- Refactor
+
+## Demo
+
+pokidoro.netlify.app
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
