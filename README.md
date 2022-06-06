@@ -3,15 +3,16 @@
 A pomodoro timer gamified where you can collect Pokemons after each session is complete. Built with React and PokeAPI.
 
 
+## Screenshot
+
+[App Screenshot](https://github.com/jcvdg/pomodoro-pokidoro/blob/main/img/screenshot.png?raw=true)
+
+
 ## Features
 
 - Pomodoro timer
 - Select preset times for focus and break sessions
 - Get rewarded after each focus session with a new Pokemon
-
-## Screenshots
-
-![App Screenshot](https://github.com/jcvdg/pomodoro-pokidoro/blob/main/img/screenshot.png?raw=true)
 
 
 ## Optimizations
