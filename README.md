@@ -6,13 +6,13 @@ A pomodoro timer gamified where you can collect Pokemons after each session is c
 
 - Pomodoro timer
 - Select preset times for focus and break sessions
-- Fullscreen mode
-- Cross platform
+- Get rewarded after each focus session with a new Pokemon
 
 
 ## Optimizations
 
-- Display previously collected pokemon
+- Save Pokemons to localstorage
+- Display previously collected pokemons
 - Improve UX
 - Add tasks and link to pomodoro session
 - Refactor
@@ -20,6 +20,19 @@ A pomodoro timer gamified where you can collect Pokemons after each session is c
 ## Demo
 
 pokidoro.netlify.app
+
+
+## Screenshots
+
+![App Screenshot](https://github.com/jcvdg/pomodoro-pokidoro/blob/main/img/screenshot.png?raw=true)
+
+
+## Built with
+
+- React
+- CSS
+- HTML
+
 
 
 # Getting Started with Create React App
